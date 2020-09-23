@@ -46,7 +46,7 @@ select
 			FROM @cdmDatabaseSchema.OBSERVATION_FACT ofct 
 				JOIN @resultsDatabaseSchema.N3C_COHORT ON ofct.PATIENT_NUM = @resultsDatabaseSchema.N3C_COHORT.PATIENT_NUM 
 				    AND ofct.START_DATE >= CAST('2018-01-01' as datetime)
-			GROUP BY ofct.ENCOUNTER_NUM, ofct.PATIENT_NUM, ofct.CONCEPT_CD, CONVERT(VARCHAR(50),HASHBYTES('MD5',provider_id),2) AS provider_id, 
+			GROUP BY ofct.ENCOUNTER_NUM, ofct.PATIENT_NUM, ofct.CONCEPT_CD, CONVERT(VARCHAR(50),HASHBYTES('MD5',provider_id),2), 
 		            ofct.START_DATE, ofct.MODIFIER_CD, ofct.INSTANCE_NUM 
 			HAVING COUNT(*) >= 2
 		 ) tbl
